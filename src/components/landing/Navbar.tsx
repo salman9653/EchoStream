@@ -1,26 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-white/5 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl tracking-tight">
-          EchoStream
-          <span className="text-primary">.</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 md:px-8 pt-6">
+      <div className="glass-header shadow-[0px_20px_40px_rgba(17,28,45,0.06)] rounded-full flex justify-between items-center px-8 py-4 w-full max-w-7xl border border-white/20">
+        <Link href="/" className="text-2xl font-black tracking-tighter text-foreground font-heading">
+          The Content Engine
         </Link>
-        <div className="hidden md:flex gap-8 items-center text-sm font-medium text-muted-foreground">
-          <Link href="#features" className="hover:text-foreground transition-colors">Features</Link>
-          <Link href="#pricing" className="hover:text-foreground transition-colors">Pricing</Link>
-          <Link href="#faq" className="hover:text-foreground transition-colors">FAQs</Link>
+        
+        <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-muted-foreground mr-12">
+          <Link href="#features" className="text-primary font-bold border-b-2 border-primary transition-all">
+            Features
+          </Link>
+          <Link href="#features" className="hover:text-primary transition-all">
+            Features
+          </Link>
+          <Link href="#pricing" className="hover:text-primary transition-all">
+            Pricing
+          </Link>
+          <Link href="#faq" className="hover:text-primary transition-all">
+            FAQ&apos;s
+          </Link>
         </div>
+
         <div className="flex items-center gap-4">
-          <Link href="/login" className="hidden sm:inline-block text-sm font-medium hover:text-foreground transition-colors">
+          <ThemeToggle />
+          <Link href="/login" className="hidden sm:block text-primary font-bold px-4 py-2 hover:bg-surface-container-low rounded-full transition-all">
             Sign In
           </Link>
-          <Link href="/dashboard" className={buttonVariants({ variant: "default", className: "rounded-full px-6" })}>
+          <Link href="/dashboard" className="editorial-gradient text-white px-6 py-2.5 rounded-full font-bold shadow-lg transform transition-transform hover:scale-105 active:scale-95">
             Get Started
           </Link>
         </div>

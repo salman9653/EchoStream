@@ -1,38 +1,44 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
 
 export function CTASection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-primary/10 -z-10" />
-      <div className="absolute top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 opacity-20 blur-[120px]">
-        <div className="h-[300px] w-[800px] rounded-full bg-primary" />
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
-        <div className="bg-primary text-primary-foreground rounded-3xl p-12 md:p-16 shadow-2xl relative overflow-hidden">
-          {/* Decorative background for the card */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
-          
-          <div className="relative z-10 flex flex-col items-center">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              Ready to amplify your voice?
-            </h2>
-            <p className="text-primary-foreground/80 text-lg mb-10 max-w-xl mx-auto">
-              Join 2,000+ creators who are scaling their presence without sacrificing their soul.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/dashboard" className={buttonVariants({ variant: "secondary", size: "lg", className: "rounded-full text-base h-14 px-8 font-semibold" })}>
-                Get Started for Free
-              </Link>
-              <Link href="#demo" className={buttonVariants({ variant: "outline", size: "lg", className: "rounded-full text-base h-14 px-8 border-white/20 hover:bg-white/10 hover:text-white" })}>
-                Book a Demo
-              </Link>
-            </div>
-          </div>
-        </div>
+    <section className="editorial-gradient py-32 md:py-48 px-6 md:px-16 text-center text-white">
+      <div className="max-w-4xl mx-auto flex flex-col items-center gap-12">
+        <motion.h2 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-7xl font-extrabold tracking-tight font-heading leading-tight text-white"
+        >
+          Ready to Amplify Your Voice?
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-xl md:text-2xl opacity-90 font-medium"
+        >
+          Join 2,000+ curators who are building their multi-platform presence with the engine.
+        </motion.p>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-col sm:flex-row gap-6 w-full max-w-lg"
+        >
+          <Link href="/dashboard" className="bg-white text-[#002fbb] px-10 py-5 rounded-full font-bold text-xl shadow-2xl hover:bg-surface-container-lowest transition-all w-full flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95">
+            Get Started
+            <span className="material-symbols-outlined text-[#002fbb]">bolt</span>
+          </Link>
+          <Link href="#demo" className="bg-primary-container/20 border-2 border-white/20 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition-all w-full flex items-center justify-center transform hover:scale-105 active:scale-95">
+            Watch Demo
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

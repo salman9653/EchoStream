@@ -1,79 +1,84 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-24 pb-32 lg:pt-36">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 opacity-30 blur-[100px]">
-        <div className="h-[400px] w-[600px] rounded-full bg-primary/40" />
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          
+    <section className="max-w-7xl mx-auto px-6 md:px-16 mb-24 md:mb-48 pt-32">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="lg:col-span-7">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-widest uppercase mb-8"
+          >
+            <span className="material-symbols-outlined text-[14px]">auto_awesome</span>
+            The Future of Curation
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-extrabold tracking-[-0.04em] text-on-surface leading-[1.1] mb-8 font-heading"
+          >
+            Turn a Spark into a <span className="text-primary italic font-heading">Multi-Platform Fire</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl md:text-2xl text-on-surface-variant max-w-xl leading-relaxed mb-12 font-medium"
+          >
+            The AI-powered topic-to-content engine designed for modern curators. Transform a single thought into a week of high-performance strategy.
+          </motion.p>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col space-y-8"
+            transition={{ delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4"
           >
-            <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary w-fit">
-              <Sparkles className="mr-2 h-4 w-4" />
-              The Content Engine
-            </div>
-            
-            <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-foreground balance">
-              Turn a Spark into a <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600 italic">
-                Multi-Platform Fire
-              </span>
-            </h1>
-            
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
-              The AI-powered topic-to-content engine designed for modern creators. Transform a single thought into a week of high-performance strategy.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/dashboard" className={buttonVariants({ size: "lg", className: "rounded-full text-base h-14 px-8 group" })}>
-                Start Creating for Free 
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link href="#demo" className={buttonVariants({ variant: "outline", size: "lg", className: "rounded-full text-base h-14 px-8" })}>
-                View Demo
-              </Link>
-            </div>
+            <Link href="/dashboard" className="editorial-gradient text-white px-8 py-5 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95">
+              Start Creating for Free
+              <span className="material-symbols-outlined text-white">bolt</span>
+            </Link>
+            <Link href="#demo" className="bg-surface-container-low text-on-surface px-8 py-5 rounded-full font-bold text-lg hover:bg-surface-container-high transition-all flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95">
+              View Demo
+            </Link>
           </motion.div>
-
-          {/* Abstract Interface Mockup */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative lg:ml-auto w-full max-w-lg"
-          >
-            <div className="relative rounded-3xl bg-gradient-to-br from-blue-500/20 to-indigo-600/20 p-2 sm:p-4 backdrop-blur-3xl border border-white/10 shadow-2xl">
-              <div className="rounded-2xl bg-background/90 backdrop-blur-md overflow-hidden aspect-square border border-white/5 relative shadow-inner">
-                {/* Decorative Elements simulating AI generation visual */}
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
-                <div className="absolute bottom-8 left-8 right-8 bg-background/80 backdrop-blur-xl p-4 rounded-xl border border-white/10 shadow-lg flex items-center space-x-4">
-                  <div className="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Sparkles className="h-5 w-5 text-primary" />
+        </div>
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="lg:col-span-5 relative"
+        >
+          <div className="aspect-square rounded-xl editorial-gradient p-1 shadow-2xl overflow-hidden group">
+            <div className="w-full h-full bg-surface-container-lowest rounded-[2.8rem] flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_50%,var(--primary),transparent)]"></div>
+              <img 
+                className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnn_PYw3Mw-Nh1k95uWJfmLjnWs4r_68EQa1hi0mQl4XiiCV7-hBU9fwYIk90_vjirKbSf4f0aA9n7gWBmhjVZvtaydslpclfo1p5hXLeblQDLMRWSzrtULDHwbOPsiPwwerkg2nOWa-o1ihfxeOSNWdanCoJ4vZkinJx5N9JsH6F-6p4hg3UpWlLFjTb8idh9VYDubmRObFRocJgWwOcwghQaQwk2HxpE5CfceDDKYn4yGm0WJIYU2OUWsJHvFw_d1hr2s2aYXiA5" 
+                alt="Abstract AI artwork" 
+              />
+              <div className="absolute bottom-8 left-8 right-8 bg-surface-container-lowest/80 backdrop-blur-md p-6 rounded-lg shadow-xl border border-outline-variant/20">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-10 h-10 rounded-full editorial-gradient flex items-center justify-center text-white">
+                    <span className="material-symbols-outlined text-sm">auto_awesome</span>
                   </div>
-                  <div className="flex-1 space-y-2">
-                    <div className="h-2 w-1/3 bg-primary/40 rounded-full"></div>
-                    <div className="h-2 w-3/4 bg-primary/20 rounded-full"></div>
+                  <div className="h-2 w-32 bg-surface-container-high rounded-full overflow-hidden">
+                    <div className="h-full bg-primary w-2/3 animate-pulse"></div>
                   </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="h-2 w-full bg-surface-container rounded-full"></div>
+                  <div className="h-2 w-4/5 bg-surface-container rounded-full"></div>
                 </div>
               </div>
             </div>
-          </motion.div>
-
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
