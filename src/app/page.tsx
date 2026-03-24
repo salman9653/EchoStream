@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/landing/Navbar";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { StepsSection } from "@/components/landing/StepsSection";
@@ -10,7 +9,6 @@ import { Footer } from "@/components/landing/Footer";
 export default function LandingPage() {
   return (
     <main className="flex min-h-screen flex-col overflow-hidden bg-background">
-      <Navbar />
       <HeroSection />
       <FeaturesSection />
       <StepsSection />

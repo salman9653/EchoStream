@@ -31,7 +31,7 @@ export function CTASection() {
           transition={{ delay: 0.2 }}
           className="flex flex-col sm:flex-row gap-6 w-full max-w-lg"
         >
-          <Link href="/dashboard" className="bg-white text-[#002fbb] px-10 py-5 rounded-full font-bold text-xl shadow-2xl hover:bg-surface-container-lowest transition-all w-full flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95">
+          <Link href="/register" className="bg-white text-[#002fbb] px-10 py-5 rounded-full font-bold text-xl shadow-2xl hover:bg-surface-container-lowest transition-all w-full flex items-center justify-center gap-2 transform hover:scale-105 active:scale-95">
             Get Started
             <span className="material-symbols-outlined text-[#002fbb]">bolt</span>
           </Link>

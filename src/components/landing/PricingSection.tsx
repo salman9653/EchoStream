@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function PricingSection() {
   return (
@@ -43,7 +44,7 @@ export function PricingSection() {
               <li className="flex items-center gap-3 font-medium"><span className="material-symbols-outlined text-primary">check_circle</span> Basic AI Models</li>
               <li className="flex items-center gap-3 font-medium"><span className="material-symbols-outlined text-primary">check_circle</span> Web Preview</li>
             </ul>
-            <button className="w-full py-4 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors font-heading">Start for Free</button>
+            <Link href="/register" className="w-full py-4 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-colors font-heading text-center block">Start for Free</Link>
           </motion.div>
 
           {/* Tier 2 (Featured) */}
@@ -67,7 +68,7 @@ export function PricingSection() {
               <li className="flex items-center gap-3 font-medium text-white/90"><span className="material-symbols-outlined text-white">check_circle</span> History Archive</li>
               <li className="flex items-center gap-3 font-medium text-white/90"><span className="material-symbols-outlined text-white">check_circle</span> API Access</li>
             </ul>
-            <button className="w-full py-4 rounded-full bg-white text-primary font-bold shadow-xl hover:shadow-white/20 transition-all font-heading">Go Pro Now</button>
+            <Link href="/register" className="w-full py-4 rounded-full bg-white text-primary font-bold shadow-xl hover:shadow-white/20 transition-all font-heading text-center block">Go Pro Now</Link>
           </motion.div>
 
           {/* Tier 3 */}
