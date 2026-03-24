@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getAuth, type Auth } from "firebase/auth";
+import { getFirestore, type Firestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,7 +13,19 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+
+let auth: Auth = null as unknown as Auth;
+let db: Firestore = null as unknown as Firestore;
+
+try {
+  // Only initialize these if we have an API key, or if we're on the client
+  // This prevents Vercel build errors during static prerendering
+  if (firebaseConfig.apiKey) {
+    auth = getAuth(app);
+    db = getFirestore(app);
+  }
+} catch (error) {
+  console.error("Firebase initialization failed", error);
+}
 
 export { auth, db };
