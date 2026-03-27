@@ -13,6 +13,12 @@ const NAV_LINKS = [
   { label: "FAQ's", href: "#faq" },
 ];
 
+const DASHBOARD_LINKS = [
+  { label: "Generator", href: "/dashboard" },
+  { label: "History", href: "/dashboard/history" },
+  { label: "Settings", href: "/dashboard/settings" },
+];
+
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
@@ -23,6 +29,11 @@ export function Navbar() {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setActiveLink(href);
+
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
 
     if (pathname !== "/") {
       router.push(`/${href}`);
@@ -36,6 +47,9 @@ export function Navbar() {
     }
   };
 
+  const isDashboard = pathname.startsWith("/dashboard");
+  const linksToShow = isDashboard ? DASHBOARD_LINKS : NAV_LINKS;
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 md:px-8 pt-6 pointer-events-none">
       <div className="glass-header shadow-[0px_20px_40px_rgba(17,28,45,0.06)] rounded-full flex justify-between items-center px-8 py-4 w-full max-w-7xl border border-white/20 pointer-events-auto bg-surface-container-lowest/80 backdrop-blur-xl">
@@ -44,12 +58,12 @@ export function Navbar() {
           onClick={() => setActiveLink(null)}
           className="text-2xl font-black tracking-tighter text-foreground font-heading"
         >
-          The Content Engine
+          EchoStream
         </Link>
         
         {/* Navigation Links - Only show on landing or large screens */}
         <div className="hidden md:flex items-center gap-2 text-sm font-semibold text-muted-foreground mr-12 bg-surface-container-low p-1.5 rounded-full border border-outline-variant/20">
-          {NAV_LINKS.map((link) => {
+          {linksToShow.map((link) => {
             const isActive = activeLink === link.href;
             return (
               <a
