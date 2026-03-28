@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,7 +24,24 @@ export function Navbar() {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [activeLink, setActiveLink] = useState<string | null>(null);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
+   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    if (isProfileOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isProfileOpen]);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -91,7 +108,7 @@ export function Navbar() {
           <ThemeToggle />
           
           {user ? (
-            <div className="relative">
+            <div className="relative" ref={profileRef}>
               <button 
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
                 className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold overflow-hidden hover:scale-105 active:scale-95 transition-all"
@@ -107,14 +124,11 @@ export function Navbar() {
               <AnimatePresence>
                 {isProfileOpen && (
                   <>
-                    <div 
-                      className="fixed inset-0 z-40" 
-                      onClick={() => setIsProfileOpen(false)}
-                    />
                     <motion.div 
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                       className="absolute right-0 top-14 w-64 bg-surface-container-highest rounded-2xl shadow-2xl border border-outline-variant/20 p-4 z-50 overflow-hidden"
                     >
                       <div className="flex items-center gap-3 mb-4 pb-4 border-b border-outline-variant/20">
@@ -133,14 +147,16 @@ export function Navbar() {
                       </div>
                       
                       <div className="flex flex-col gap-2">
-                        <Link 
-                          href="/dashboard"
-                          onClick={() => setIsProfileOpen(false)}
-                          className="w-full px-4 py-2.5 rounded-xl hover:bg-surface-container-low transition-colors text-sm font-bold text-primary flex items-center gap-2"
-                        >
-                          <span className="material-symbols-outlined text-[18px]">dashboard</span>
-                          Dashboard
-                        </Link>
+                        {!pathname.startsWith("/dashboard") && (
+                          <Link 
+                            href="/dashboard"
+                            onClick={() => setIsProfileOpen(false)}
+                            className="w-full px-4 py-2.5 rounded-xl hover:bg-surface-container-low transition-colors text-sm font-bold text-primary flex items-center gap-2"
+                          >
+                            <span className="material-symbols-outlined text-[18px]">dashboard</span>
+                            Dashboard
+                          </Link>
+                        )}
                         <button 
                           onClick={() => {
                             setIsProfileOpen(false);

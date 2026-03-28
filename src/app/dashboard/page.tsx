@@ -335,17 +335,27 @@ export default function CampaignPage() {
                   </div>
 
           {/* Sample Text Area */}
-          {useSampleText && (
-            <div className="mt-4 mb-1 space-y-2">
-              <Label className="text-[11px] font-black uppercase tracking-[0.2em] text-on-surface-variant">
-                SAMPLE TEXT
-              </Label>
-              <Textarea 
-                placeholder="Paste a sample of your writing style here..."
-                className="min-h-32 rounded-3xl bg-surface-container-lowest border-transparent focus:border-primary/30 focus:ring-primary/20 text-[15px] font-medium p-6 resize-none shadow-sm placeholder:text-on-surface-variant/30"
-              />
-            </div>
-          )}
+          <AnimatePresence>
+            {useSampleText && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="mt-4 mb-1 space-y-2">
+                  <Label className="text-[11px] font-black uppercase tracking-[0.2em] text-on-surface-variant">
+                    SAMPLE TEXT
+                  </Label>
+                  <Textarea 
+                    placeholder="Paste a sample of your writing style here..."
+                    className="min-h-32 rounded-3xl bg-surface-container-lowest border-transparent focus:border-primary/30 focus:ring-primary/20 text-[15px] font-medium p-6 resize-none shadow-sm placeholder:text-on-surface-variant/30"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
           </motion.div>
           )}
           </AnimatePresence>
